@@ -45,7 +45,7 @@ const main = async (): Promise<void> => {
 
 	if (!lockfile) throw Error(`No pnpm-lock.yaml file was found in ${options.workspaceRoot}`);
 
-	const filter = options.selectors.map((selector) => ({
+	const filter = options.selectors.map(selector => ({
 
 		filter: expandSelector(selector),
 		followProdDepsOnly: options.productionOnly
@@ -329,9 +329,7 @@ const createPrunedWorkspaceManifest = (manifest: WorkspaceManifest, importerIds:
 	return {
 
 		...manifest,
-		packages: [ ...importerIds ]
-			.filter((importerId) => importerId !== '.')
-			.sort((firstImporterId, secondImporterId) => firstImporterId.localeCompare(secondImporterId))
+		packages: [ ...importerIds ].filter(importerId => importerId !== '.').sort((a, b) => a.localeCompare(b))
 
 	};
 
